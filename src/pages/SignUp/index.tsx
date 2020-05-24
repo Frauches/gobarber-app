@@ -11,8 +11,11 @@ import logoImg from '../../assets/logo.png';
 import Button from './../../components/Button/index';
 import Input from './../../components/Input/index';
 import { BackToSignIn, BackToSignInText, Container, Title } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUp: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
     <>
       <KeyboardAvoidingView
@@ -45,7 +48,7 @@ const SignUp: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <BackToSignIn>
+      <BackToSignIn onPress={() => navigation.goBack()}>
         <Icon name="arrow-left" size={20} color="#f4ede8" />
         <BackToSignInText>Voltar para SignIn</BackToSignInText>
       </BackToSignIn>
