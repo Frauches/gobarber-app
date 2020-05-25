@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { Form, FormHandles } from '@unform/core';
 import React, { useCallback, useRef } from 'react';
+import api from '../../services/api';
 import {
   Image,
   KeyboardAvoidingView,
@@ -44,6 +45,15 @@ const SignUp: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      await api.post('/users', data);
+
+      Alert.alert(
+        'Cadastro realizado com sucesso!',
+        'Você já pode fazer login na aplicação.',
+      );
+
+      navigation.goBack();
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
